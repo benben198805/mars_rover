@@ -157,50 +157,113 @@ public class RoverTest {
 
 
     @Test
+    public void shoule_return_eror_when_roverArgs_null() {
+        String rowverArgs = "";
+
+        try {
+            rover = new Rover(rowverArgs);
+        } catch (IllegalArgumentException ex) {
+            Assert.assertThat(ex.getMessage(), is("mapSize is not right format"));
+        }
+    }
+
+
+    @Test
+    public void shoule_return_eror_when_roverArgs_one_args() {
+        String rowverArgs = "1";
+
+        try {
+            rover = new Rover(rowverArgs);
+        } catch (IllegalArgumentException ex) {
+            Assert.assertThat(ex.getMessage(), is("mapSize is not right format"));
+        }
+    }
+
+    @Test
+    public void shoule_return_eror_when_roverArgs_three_args() {
+        String rowverArgs = "1 2 3";
+
+        try {
+            rover = new Rover(rowverArgs);
+        } catch (IllegalArgumentException ex) {
+            Assert.assertThat(ex.getMessage(), is("mapSize is not right format"));
+        }
+    }
+
+
+    @Test
+    public void shoule_return_eror_when_roverArgs_contain_apphabet() {
+        String rowverArgs = "1 a";
+
+        try {
+            rover = new Rover(rowverArgs);
+        } catch (IllegalArgumentException ex) {
+            Assert.assertThat(ex.getMessage(), is("mapSize is not right format"));
+        }
+    }
+
+
+    @Test
     public void shoule_return_eror_when_init_null() {
         String initLocation = "";
 
+        rover = new Rover("5 5");
         try {
-            rover = new Rover(initLocation);
+            rover.Init(initLocation);
         } catch (IllegalArgumentException ex) {
-            Assert.assertThat(ex.getMessage(), is("mapSize`s must be 2"));
+            Assert.assertThat(ex.getMessage(), is("location is not right format"));
         }
     }
-
 
     @Test
     public void shoule_return_eror_when_init_one_args() {
-        String initLocation = "1";
+        String initLocation = "1 1";
 
+        rover = new Rover("5 5");
         try {
-            rover = new Rover(initLocation);
+            rover.Init(initLocation);
         } catch (IllegalArgumentException ex) {
-            Assert.assertThat(ex.getMessage(), is("mapSize`s must be 2"));
+            Assert.assertThat(ex.getMessage(), is("location is not right format"));
         }
     }
 
     @Test
-    public void shoule_return_eror_when_init_three_args() {
-        String initLocation = "1 2 3";
+    public void shoule_return_eror_when_init_four_args() {
+        String initLocation = "1 1 N 1";
 
+        rover = new Rover("5 5");
         try {
-            rover = new Rover(initLocation);
+            rover.Init(initLocation);
         } catch (IllegalArgumentException ex) {
-            Assert.assertThat(ex.getMessage(), is("mapSize`s must be 2"));
+            Assert.assertThat(ex.getMessage(), is("location is not right format"));
         }
+    }
+
+    @Test
+    public void shoule_return_eror_when_take_null_orders() {
+        String orders = "";
+
+        rover = new Rover("5 5");
+        rover.Init("1 1 N");
+        rover.TakeOrder(orders);
+        String result=rover.ShowLocation();
+
+        Assert.assertThat(result,is("1 1 N"));
     }
 
 
     @Test
-    public void shoule_return_eror_when_init_contain_apphabet() {
-        String initLocation = "1 a";
+    public void shoule_return_eror_when_take_orders_contain_not_LRM_order() {
+        String orders = "M8%RM";
 
-        try {
-            rover = new Rover(initLocation);
-        } catch (IllegalArgumentException ex) {
-            Assert.assertThat(ex.getMessage(), is("mapSize must be alphabet"));
-        }
+        rover = new Rover("5 5");
+        rover.Init("1 1 N");
+        rover.TakeOrder(orders);
+        String result=rover.ShowLocation();
+
+        Assert.assertThat(result,is("2 2 E"));
     }
+
 
 
 }
