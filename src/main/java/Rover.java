@@ -3,7 +3,7 @@
  */
 public final class Rover {
     private String[] mapSize;
-    private String[] location;
+    private Location location;
     private String orders;
 
     public Rover(String mapSize) {
@@ -11,11 +11,12 @@ public final class Rover {
     }
 
     public void Init(String location) {
-        this.location=location.split(" ");
+        String[] locationTemp=location.split(" ");
+        this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]),locationTemp[2]);
     }
 
-    public String[] ShowLocation() {
-        return location;
+    public String ShowLocation() {
+        return location.ShowLocation();
     }
 
     public void TakeOrder(String orders) {

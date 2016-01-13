@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RoverTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-01-13T03:25:51" hostname="ben-K40AB" time="0.014">
+<testsuite name="RoverTest" tests="1" skipped="0" failures="0" errors="0" timestamp="2016-01-13T03:45:33" hostname="ben-K40AB" time="0.027">
   <properties/>
-  <testcase name="shoule_return_same_location_when_user_init" classname="RoverTest" time="0.014"/>
+  <testcase name="shoule_return_same_location_when_user_init" classname="RoverTest" time="0.027"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

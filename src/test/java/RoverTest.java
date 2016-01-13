@@ -23,7 +23,6 @@ public class RoverTest {
 
         rover.Init(initLocation);
 
-        String[] location={"1","1","N"};
-        Assert.assertThat(rover.ShowLocation(),is(location));
+        Assert.assertThat(rover.ShowLocation(),is(initLocation));
     }
 }
