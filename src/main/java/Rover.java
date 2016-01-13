@@ -1,33 +1,45 @@
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by ben on 16-1-13.
- */
 public final class Rover {
     private String[] mapSize;
     private Location location;
+    private Direction orientation;
     private String orders;
-    public List<String> direction;
 
 
     public Rover(String mapSize) {
         this.mapSize=mapSize.split(" ");
-        direction = new ArrayList<String>();
-        direction.add("W");
-        direction.add("N");
-        direction.add("E");
-        direction.add("S");
 
     }
+
 
     public void Init(String location) {
         String[] locationTemp=location.split(" ");
-        this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]),locationTemp[2]);
+        this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]));
+        setOrientation(locationTemp[2]);
+    }
+
+
+
+    public void setOrientation(String orientation) {
+        switch (orientation)
+        {
+            case "W":
+                this.orientation=Direction.W;
+                break;
+            case "N":
+                this.orientation=Direction.N;
+                break;
+            case "E":
+                this.orientation=Direction.E;
+                break;
+            case "S":
+                this.orientation=Direction.S;
+                break;
+        }
     }
 
     public String ShowLocation() {
-        return location.ShowLocation();
+
+        return location.ShowLocation()+" "+orientation.toString();
     }
 
     public void TakeOrder(String order) {
@@ -36,36 +48,18 @@ public final class Rover {
         {
             switch (this.orders.charAt(index))
             {
-
                 case 'L':
-                    if(direction.indexOf(location.getOrientation())==0)
-                    {
-                        location.setOrientation(direction.get(direction.size()-1));
-                    }
-                    else
-                    {
-                        location.setOrientation(direction.get(direction.indexOf(location.getOrientation())-1));
-                    }
+                    orientation=orientation.left();
                     break;
 
                 case 'R':
-                    if(direction.indexOf(location.getOrientation())==direction.size()-1)
-                    {
-                        location.setOrientation(direction.get(0));
-                    }
-                    else
-                    {
-                        location.setOrientation(direction.get(direction.indexOf(location.getOrientation())+1));
-                    }
+                    orientation=orientation.right();
                     break;
 
                 case 'M':
-                    location.setLocationY(location.getLocationY()+1);
-
+                    location.move(orientation);
                     break;
             }
-
         }
     }
-
 }
