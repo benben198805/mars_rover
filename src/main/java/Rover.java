@@ -1,20 +1,57 @@
 public final class Rover {
-    private String[] mapSize;
+    private int[] mapSize;
     private Location location;
     private Direction orientation;
     private String orders;
 
 
     public Rover(String mapSize) {
-        this.mapSize=mapSize.split(" ");
+        String[] map=mapSize.split(" ");
+        if(map.length!=2)
+        {
+            throw new IllegalArgumentException("mapSize`s must be 2");
+        }
+        {
+            this.mapSize=new int[2];
+            try{
+                this.mapSize[0]=Integer.parseInt(map[0]);
+                this.mapSize[1]=Integer.parseInt(map[1]);
+            }
+            catch (IllegalArgumentException ex)
+            {
+                throw new IllegalArgumentException("mapSize must be alphabet");
+            }
+        }
 
     }
 
 
     public void Init(String location) {
         String[] locationTemp=location.split(" ");
-        this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]));
-        setOrientation(locationTemp[2]);
+        if(locationTemp.length!=3)
+        {
+            throw new IllegalArgumentException("locationArg`s must be 3");
+        }
+        {
+            try{
+                this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]));
+            }
+            catch (IllegalArgumentException ex)
+            {
+                throw new IllegalArgumentException("location must be alphabet");
+            }
+
+            try{
+                setOrientation(locationTemp[2]);
+            }
+            catch (IllegalArgumentException ex)
+            {
+                throw new IllegalArgumentException("orietation is error");
+            }
+        }
+
+
+
     }
 
 
@@ -51,13 +88,14 @@ public final class Rover {
                 case 'L':
                     orientation=orientation.left();
                     break;
-
                 case 'R':
                     orientation=orientation.right();
                     break;
-
                 case 'M':
-                    location.move(orientation);
+                    if(location.checkMove(orientation,mapSize))
+                    {
+                        location.move(orientation);
+                    }
                     break;
             }
         }
