@@ -14,12 +14,16 @@
 5 5
 
 1 2 N
+
 LMLMLMLMM
+
 3 3 E
+
 MMRMMRMRRM 
 
 ##期待的输出
 
 1 3 N
+
 5 1 E
 
