@@ -121,6 +121,15 @@ public class RoverTest {
         Assert.assertThat(rover.ShowLocation(),is(resultLocation));
     }
 
+    @Test
+    public void shoule_return_51E_orietation_when_init_51E_and_takeOrder_M() throws Exception {
+        String initLocation="5 1 E";
 
+        rover.Init(initLocation);
+        rover.TakeOrder("M");
+
+        String resultLocation="5 1 E";
+        Assert.assertThat(rover.ShowLocation(),is(resultLocation));
+    }
 
 }
