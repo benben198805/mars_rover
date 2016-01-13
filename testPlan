@@ -1,0 +1,21 @@
+#test plan
+##basic
+
+1.能否正确返回位置信息。
+
+
+##takeorder
+1.L
+2.R
+3.M
+4.LRLR
+5.LLRR
+6.LRMLLR
+
+
+##gotoborder
+1.left
+2.right
+3.up
+4.down
+
