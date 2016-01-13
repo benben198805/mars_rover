@@ -12,6 +12,18 @@ public class Location {
         this.orientation = orientation;
     }
 
+    public int getLocationX() {
+        return LocationX;
+    }
+
+    public int getLocationY() {
+        return LocationY;
+    }
+
+    public String getOrientation() {
+        return orientation;
+    }
+
     public void setLocationX(int locationX) {
         LocationX = locationX;
     }

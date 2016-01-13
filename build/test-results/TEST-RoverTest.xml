@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="RoverTest" tests="3" skipped="0" failures="0" errors="0" timestamp="2016-01-13T05:29:25" hostname="ben-K40AB" time="0.045">
+<testsuite name="RoverTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2016-01-13T05:58:44" hostname="ben-K40AB" time="0.064">
   <properties/>
-  <testcase name="shoule_return_same_location_when_use_init" classname="RoverTest" time="0.012"/>
-  <testcase name="shoule_return_W_orietation_when_takeOrder_L" classname="RoverTest" time="0.0"/>
-  <testcase name="shoule_return_E_orietation_when_takeOrder_L" classname="RoverTest" time="0.016"/>
+  <testcase name="shoule_return_same_location_when_use_init" classname="RoverTest" time="0.017"/>
+  <testcase name="shoule_return_12N_orietation_when_init_11N_and_takeOrder_M" classname="RoverTest" time="0.001"/>
+  <testcase name="shoule_return_S_orietation_when_init_11E_and_takeOrder_R" classname="RoverTest" time="0.019"/>
+  <testcase name="shoule_return_W_orietation_when_takeOrder_L" classname="RoverTest" time="0.003"/>
+  <testcase name="shoule_return_E_orietation_when_takeOrder_L" classname="RoverTest" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

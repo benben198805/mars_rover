@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created by ben on 16-1-13.
  */
@@ -5,9 +8,17 @@ public final class Rover {
     private String[] mapSize;
     private Location location;
     private String orders;
+    public List<String> direction;
+
 
     public Rover(String mapSize) {
         this.mapSize=mapSize.split(" ");
+        direction = new ArrayList<String>();
+        direction.add("W");
+        direction.add("N");
+        direction.add("E");
+        direction.add("S");
+
     }
 
     public void Init(String location) {
@@ -27,11 +38,30 @@ public final class Rover {
             {
 
                 case 'L':
-                    location.setOrientation("W");
+                    if(direction.indexOf(location.getOrientation())==0)
+                    {
+                        location.setOrientation(direction.get(direction.size()-1));
+                    }
+                    else
+                    {
+                        location.setOrientation(direction.get(direction.indexOf(location.getOrientation())-1));
+                    }
                     break;
 
                 case 'R':
-                    location.setOrientation("E");
+                    if(direction.indexOf(location.getOrientation())==direction.size()-1)
+                    {
+                        location.setOrientation(direction.get(0));
+                    }
+                    else
+                    {
+                        location.setOrientation(direction.get(direction.indexOf(location.getOrientation())+1));
+                    }
+                    break;
+
+                case 'M':
+                    location.setLocationY(location.getLocationY()+1);
+
                     break;
             }
 

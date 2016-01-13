@@ -49,4 +49,30 @@ public class RoverTest {
     }
 
 
+
+    @Test
+    public void shoule_return_S_orietation_when_init_11E_and_takeOrder_R() throws Exception {
+        String initLocation="1 1 E";
+
+
+        rover.Init(initLocation);
+        rover.TakeOrder("R");
+
+        String resultLocation="1 1 S";
+        Assert.assertThat(rover.ShowLocation(),is(resultLocation));
+    }
+
+
+    @Test
+    public void shoule_return_12N_orietation_when_init_11N_and_takeOrder_M() throws Exception {
+        String initLocation="1 1 N";
+
+
+        rover.Init(initLocation);
+        rover.TakeOrder("M");
+
+        String resultLocation="1 2 N";
+        Assert.assertThat(rover.ShowLocation(),is(resultLocation));
+    }
+
 }
