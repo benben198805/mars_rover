@@ -12,6 +12,17 @@ public class Location {
         this.orientation = orientation;
     }
 
+    public void setLocationX(int locationX) {
+        LocationX = locationX;
+    }
+
+    public void setLocationY(int locationY) {
+        LocationY = locationY;
+    }
+
+    public void setOrientation(String orientation) {
+        this.orientation = orientation;
+    }
 
     public String ShowLocation()
     {

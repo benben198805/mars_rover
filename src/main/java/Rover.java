@@ -19,8 +19,19 @@ public final class Rover {
         return location.ShowLocation();
     }
 
-    public void TakeOrder(String orders) {
-        this.orders=orders;
+    public void TakeOrder(String order) {
+        this.orders=order;
+        for(int index=0;index<orders.length();index++)
+        {
+            switch (this.orders.charAt(index))
+            {
+
+                case 'L':
+                    location.setOrientation("W");
+                    break;
+            }
+
+        }
     }
 
 }

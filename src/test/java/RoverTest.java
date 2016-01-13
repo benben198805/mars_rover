@@ -13,12 +13,19 @@ public class RoverTest {
     }
 
     @Test
-    public void testTakeOrder() throws Exception {
+    public void shoule_return_W_orietation_when_takeOrder_L() throws Exception {
+        String initLocation="1 1 N";
 
+
+        rover.Init(initLocation);
+        rover.TakeOrder("L");
+
+        String resultLocation="1 1 W";
+        Assert.assertThat(rover.ShowLocation(),is(resultLocation));
     }
 
     @Test
-    public void shoule_return_same_location_when_user_init() throws Exception {
+    public void shoule_return_same_location_when_use_init() throws Exception {
         String initLocation="1 1 N";
 
         rover.Init(initLocation);
