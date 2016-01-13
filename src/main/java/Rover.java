@@ -1,3 +1,6 @@
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public final class Rover {
     private int[] mapSize;
     private Location location;
@@ -6,54 +9,38 @@ public final class Rover {
 
 
     public Rover(String mapSize) {
-        String[] map=mapSize.split(" ");
-        if(map.length!=2)
+        Pattern mapSizePattern= Pattern.compile("\\d \\d");
+        Matcher mapSizeMatcher=mapSizePattern.matcher(mapSize);
+        boolean isMatchFormat=mapSizeMatcher.matches();
+        if(isMatchFormat)
         {
-            throw new IllegalArgumentException("mapSize`s must be 2");
-        }
-        {
+            String[] map=mapSize.split(" ");
             this.mapSize=new int[2];
-            try{
-                this.mapSize[0]=Integer.parseInt(map[0]);
-                this.mapSize[1]=Integer.parseInt(map[1]);
-            }
-            catch (IllegalArgumentException ex)
-            {
-                throw new IllegalArgumentException("mapSize must be alphabet");
-            }
+            this.mapSize[0]=Integer.parseInt(map[0]);
+            this.mapSize[1]=Integer.parseInt(map[1]);
         }
-
+        else
+        {
+            throw new IllegalArgumentException("mapSize is not right format");
+        }
     }
 
 
     public void Init(String location) {
-        String[] locationTemp=location.split(" ");
-        if(locationTemp.length!=3)
+        Pattern locationPattern= Pattern.compile("\\d \\d [WNES]");
+        Matcher locationMatcher=locationPattern.matcher(location);
+        boolean isMatchFormat=locationMatcher.matches();
+        if(isMatchFormat)
         {
-            throw new IllegalArgumentException("locationArg`s must be 3");
+            String[] locationTemp=location.split(" ");
+            this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]));
+            setOrientation(locationTemp[2]);
         }
+        else
         {
-            try{
-                this.location=new Location(Integer.parseInt(locationTemp[0]),Integer.parseInt(locationTemp[1]));
-            }
-            catch (IllegalArgumentException ex)
-            {
-                throw new IllegalArgumentException("location must be alphabet");
-            }
-
-            try{
-                setOrientation(locationTemp[2]);
-            }
-            catch (IllegalArgumentException ex)
-            {
-                throw new IllegalArgumentException("orietation is error");
-            }
+            throw new IllegalArgumentException("location is not right format");
         }
-
-
-
     }
-
 
 
     public void setOrientation(String orientation) {

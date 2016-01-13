@@ -1,24 +1,10 @@
-import java.util.ArrayList;
-import java.util.List;
-
-/**
- * Created by ben on 16-1-13.
- */
 public class Location {
     private int locationX;
     private int locationY;
-    private String orientation;
-    private List<String> direction;
 
-    public Location(int locationX, int locationY, String orientation) {
+    public Location(int locationX, int locationY) {
         this.locationX = locationX;
         this.locationY = locationY;
-        this.orientation = orientation;
-        direction = new ArrayList<String>();
-        direction.add("W");
-        direction.add("N");
-        direction.add("E");
-        direction.add("S");
     }
 
     public int getLocationX() {
@@ -29,9 +15,6 @@ public class Location {
         return locationY;
     }
 
-    public String getOrientation() {
-        return orientation;
-    }
 
     public void setLocationX(int locationX) {
         this.locationX = locationX;
@@ -41,56 +24,51 @@ public class Location {
         this.locationY = locationY;
     }
 
-    public void setOrientation(String orientation) {
-        this.orientation = orientation;
-    }
 
     public String ShowLocation()
     {
-        String result=String.valueOf(locationX)+" "+String.valueOf(locationY)+" "+orientation;
+        String result=String.valueOf(locationX)+" "+String.valueOf(locationY);
         return result;
     }
 
-    public void move() {
-        switch (this.orientation)
+    public void move(Direction orientation) {
+        switch (orientation)
         {
-            case "N":
+            case N:
                     this.locationY++;
                 break;
 
-            case "S":
+            case S:
                     this.locationY--;
                 break;
 
-            case "W":
+            case W:
                     this.locationX--;
                 break;
 
-            case "E":
+            case E:
                     this.locationX++;
                 break;
         }
     }
 
-    public void turnLeft() {
-        if(direction.indexOf(orientation)==0)
+    public boolean checkMove(Direction orientation,int[] mapSize) {
+        boolean isNotMove =true;
+        switch (orientation)
         {
-            orientation=direction.get(direction.size()-1);
+            case N:
+                isNotMove =this.locationY==mapSize[1];
+                break;
+            case S:
+                isNotMove =locationY==1;
+                break;
+            case W:
+                isNotMove =locationX==1;
+                break;
+            case E:
+                isNotMove =locationX==mapSize[1];
+                break;
         }
-        else
-        {
-            orientation=direction.get(direction.indexOf(orientation)-1);
-        }
-    }
-
-    public void turnRight() {
-        if(direction.indexOf(orientation)==direction.size()-1)
-        {
-            orientation=direction.get(0);
-        }
-        else
-        {
-            orientation=direction.get(direction.indexOf(orientation)+1);
-        }
+        return !isNotMove;
     }
 }
