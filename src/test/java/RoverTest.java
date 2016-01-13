@@ -12,6 +12,17 @@ public class RoverTest {
         rover=new Rover("5 5");
     }
 
+
+    @Test
+    public void shoule_return_same_location_when_use_init() throws Exception {
+        String initLocation="1 1 N";
+
+        rover.Init(initLocation);
+
+        Assert.assertThat(rover.ShowLocation(),is(initLocation));
+    }
+
+
     @Test
     public void shoule_return_W_orietation_when_takeOrder_L() throws Exception {
         String initLocation="1 1 N";
@@ -24,12 +35,18 @@ public class RoverTest {
         Assert.assertThat(rover.ShowLocation(),is(resultLocation));
     }
 
+
     @Test
-    public void shoule_return_same_location_when_use_init() throws Exception {
+    public void shoule_return_E_orietation_when_takeOrder_L() throws Exception {
         String initLocation="1 1 N";
 
-        rover.Init(initLocation);
 
-        Assert.assertThat(rover.ShowLocation(),is(initLocation));
+        rover.Init(initLocation);
+        rover.TakeOrder("R");
+
+        String resultLocation="1 1 E";
+        Assert.assertThat(rover.ShowLocation(),is(resultLocation));
     }
+
+
 }

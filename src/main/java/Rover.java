@@ -29,6 +29,10 @@ public final class Rover {
                 case 'L':
                     location.setOrientation("W");
                     break;
+
+                case 'R':
+                    location.setOrientation("E");
+                    break;
             }
 
         }
